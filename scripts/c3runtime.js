@@ -1412,17 +1412,18 @@ self.C3_ExpressionFuncs = [
 		() => 11,
 		() => 12,
 		() => 13,
+		() => -1,
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			return () => (1 - v0.GetValue());
 		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => Math.round(C3.clamp((((f0() - 850) / 360) * 12), 0, 12));
+			return () => Math.round(C3.clamp((((f0("game") - 850) / 360) * 12), 0, 12));
 		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => Math.round((300 + (900 * (Math.round(C3.clamp((((f0() - 800) / 360) * 182), 0, 182)) / 182))));
+			return () => Math.round((300 + (900 * (Math.round(C3.clamp((((f0("game") - 800) / 360) * 182), 0, 182)) / 182))));
 		},
 		() => -12,
 		() => "ui",
@@ -1432,7 +1433,7 @@ self.C3_ExpressionFuncs = [
 		},
 		p => {
 			const v0 = p._GetNode(0).GetVar();
-			return () => Math.round(((v0.GetValue() - 300) * (182 / 900)));
+			return () => C3.clamp(Math.round(((v0.GetValue() - 300) * (182 / 900))), 0, 182);
 		},
 		p => {
 			const v0 = p._GetNode(0).GetVar();
@@ -1446,16 +1447,13 @@ self.C3_ExpressionFuncs = [
 		},
 		p => {
 			const v0 = p._GetNode(0).GetVar();
-			return () => (v0.GetValue() + 26);
+			return () => (v0.GetValue() + 25);
 		},
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			return () => (v0.GetValue() + 183);
 		},
-		p => {
-			const v0 = p._GetNode(0).GetVar();
-			return () => Math.round(((v0.GetValue() / 12) * 100));
-		},
+		() => 100,
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			return () => (v0.GetValue() / 24);
@@ -1469,8 +1467,7 @@ self.C3_ExpressionFuncs = [
 			const v1 = p._GetNode(1).GetVar();
 			const f2 = p._GetNode(2).GetBoundMethod();
 			const v3 = p._GetNode(3).GetVar();
-			const v4 = p._GetNode(4).GetVar();
-			return () => ((f0(Math.floor(v1.GetValue()), 2) + ".") + f2(Math.round(((v3.GetValue() - Math.floor(v4.GetValue())) * 100)), 2));
+			return () => ((f0(Math.floor((Math.round((v1.GetValue() * 100)) / 100)), 2) + ".") + f2((Math.round((v3.GetValue() * 100)) % 100), 2));
 		},
 		() => "0.000",
 		p => {
@@ -1495,8 +1492,7 @@ self.C3_ExpressionFuncs = [
 			const v0 = p._GetNode(0).GetVar();
 			const f1 = p._GetNode(1).GetBoundMethod();
 			const v2 = p._GetNode(2).GetVar();
-			const v3 = p._GetNode(3).GetVar();
-			return () => (and(Math.floor(v0.GetValue()), ".") + f1(Math.round(((v2.GetValue() - Math.floor(v3.GetValue())) * 1000)), 3));
+			return () => (and(Math.floor((Math.round((v0.GetValue() * 1000)) / 1000)), ".") + f1((Math.round((v2.GetValue() * 1000)) % 1000), 3));
 		},
 		p => {
 			const n0 = p._GetNode(0);
@@ -1504,7 +1500,8 @@ self.C3_ExpressionFuncs = [
 		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => Math.round((50 + (50 * Math.sin(C3.toRadians((f0() * 300))))));
+			const n1 = p._GetNode(1);
+			return () => Math.round((50 + (50 * Math.sin(C3.toRadians(((f0() * 300) + (n1.ExpObject() * 65)))))));
 		},
 		() => "",
 		() => 300,

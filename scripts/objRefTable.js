@@ -21,8 +21,8 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Sprite.Acts.Destroy,
 		C3.Plugins.System.Cnds.Compare,
 		C3.Plugins.System.Acts.SetVar,
+		C3.Plugins.Touch.Cnds.OnTouchEnd,
 		C3.Plugins.System.Cnds.EveryTick,
-		C3.Plugins.Touch.Cnds.IsTouchingObject,
 		C3.Plugins.Touch.Exps.X,
 		C3.Plugins.Touch.Cnds.OnTouchStart,
 		C3.Plugins.Audio.Acts.Play,
@@ -36,6 +36,7 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Sprite.Exps.X,
 		C3.Plugins.Sprite.Exps.Y,
 		C3.Plugins.System.Exps.time,
+		C3.Plugins.Sprite.Exps.AnimationFrame,
 		C3.Behaviors.Tween.Acts.TweenOneProperty,
 		C3.Plugins.System.Acts.SetBoolVar,
 		C3.Plugins.System.Cnds.CompareBoolVar,
@@ -95,6 +96,8 @@ self.C3_JsPropNameTable = [
 	{menuBody: 0},
 	{Audio: 0},
 	{hintOutline: 0},
+	{primaryWinding: 0},
+	{secondaryWinding: 0},
 	{sourceV: 0},
 	{primaryN: 0},
 	{secondaryN: 0},
@@ -111,6 +114,7 @@ self.C3_JsPropNameTable = [
 	{frameSecondary: 0},
 	{frameRightCable: 0},
 	{glow: 0},
+	{dragTarget: 0},
 	{isLoader: 0}
 ];
 
@@ -163,5 +167,7 @@ self.InstanceType = {
 	menuTitle: class extends self.ITextInstance {},
 	menuBody: class extends self.ITextInstance {},
 	Audio: class extends self.IInstance {},
-	hintOutline: class extends self.ISpriteInstance {}
+	hintOutline: class extends self.ISpriteInstance {},
+	primaryWinding: class extends self.ISpriteInstance {},
+	secondaryWinding: class extends self.ISpriteInstance {}
 }
