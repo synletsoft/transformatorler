@@ -1447,20 +1447,11 @@ self.C3_ExpressionFuncs = [
 		},
 		p => {
 			const v0 = p._GetNode(0).GetVar();
-			return () => (v0.GetValue() + 25);
-		},
-		p => {
-			const v0 = p._GetNode(0).GetVar();
-			return () => (v0.GetValue() + 183);
-		},
-		() => 100,
-		p => {
-			const v0 = p._GetNode(0).GetVar();
 			return () => (v0.GetValue() / 24);
 		},
 		p => {
 			const v0 = p._GetNode(0).GetVar();
-			return () => Math.round(C3.clamp((((v0.GetValue() - 0.1) / 11.9) * 101), 0, 101));
+			return () => (100 * C3.clamp((v0.GetValue() / 12), 0, 1));
 		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
@@ -1494,9 +1485,18 @@ self.C3_ExpressionFuncs = [
 			const v2 = p._GetNode(2).GetVar();
 			return () => (and(Math.floor((Math.round((v0.GetValue() * 1000)) / 1000)), ".") + f1((Math.round((v2.GetValue() * 1000)) % 1000), 3));
 		},
+		() => 100,
 		p => {
 			const n0 = p._GetNode(0);
 			return () => n0.ExpObject();
+		},
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			return () => C3.clamp((Math.round(v0.GetValue()) - 1), 0, 11);
+		},
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			return () => C3.clamp((Math.round((((v0.GetValue() - 0.1) / 11.9) * 101)) - 1), 0, 100);
 		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
